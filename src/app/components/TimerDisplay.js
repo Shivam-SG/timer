@@ -1,38 +1,39 @@
-// components/TimerDisplay.js
 import React from "react";
 
-const TimerDisplay = ({ playerName, time, onSwitch, isActive, isPlayer1 }) => {
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs < 10 ? `0${secs}` : secs}`;
-  };
+function formatTime(timeInSeconds) {
+  if (isNaN(timeInSeconds) || timeInSeconds < 0) {
+    return "00:00"; 
+  }
+  const minutes = Math.floor(timeInSeconds / 60); 
+  const seconds = timeInSeconds % 60;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
 
+
+
+const TimerDisplay = ({ playerName, time, onSwitch, isActive, isPlayer1 }) => {
   return (
     <div
-      className="flex flex-col items-center gap-6 mt-4 mb-4"
-      style={isPlayer1 ? { transform: "rotate(180deg)" } : {}}
+      className={`flex flex-col ${
+        isPlayer1 ? 'rotate-180' : ''
+      }`}
     >
-      <h2 className="text-4xl font-bold">{playerName}</h2>
-      <div
-        className={`bg-blue-500 text-4xl font-mono px-8 py-4 rounded-xl mb-2 ${
-          isActive ? "border-4 border-yellow-500" : ""
-        }`}
-        // Apply rotation for Player 1
-      >
-        {formatTime(time)}
+      <h2 className="text-2xl mb-2">{playerName}</h2>
+      <div className="text-5xl font-bold text-center">
+        {formatTime(time)} 
       </div>
       <button
         onClick={onSwitch}
-        className={`bg-red-500 text-white text-[2rem] w-full py-10 rounded-full ${
-          !isActive ? "opacity-50 cursor-not-allowed" : ""
+        disabled={!isActive} 
+        className={`mt-4 px-4 py-2 text-lg rounded h-60 ${
+          isActive ? 'bg-red-500' : 'bg-blue-500 cursor-not-allowed'
         }`}
-        disabled={!isActive} // Disable the button if it's not the active player's turn
       >
-        Pass
+        {isActive ? 'Stop' : 'Opponent Turn'}
       </button>
     </div>
   );
 };
 
 export default TimerDisplay;
+
