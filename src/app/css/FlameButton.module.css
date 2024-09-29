@@ -1,0 +1,58 @@
+.flameButton {
+    position: relative;
+    padding: 15px 30px;
+    background-color: #2bcb59;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 30px;
+    font-weight: 500;
+  }
+  
+  .fire {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translateX(-50%);
+  }
+  
+  .flame {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #ff0 0%, rgba(255, 0, 0, 0) 70%);
+    border-radius: 50%;
+    animation: flame 1s infinite ease-in-out;
+  }
+  
+  .flame:nth-child(2) {
+    left: -15px;
+    animation-delay: 0.2s;
+  }
+  
+  .flame:nth-child(3) {
+    left: 15px;
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes flame {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-50px) scale(1.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100px) scale(0);
+      opacity: 0;
+    }
+  }
+  

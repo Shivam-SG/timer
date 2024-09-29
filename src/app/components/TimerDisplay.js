@@ -25,8 +25,8 @@ const TimerDisplay = ({ playerName, time, onSwitch, isActive, isPlayer1 }) => {
       <button
         onClick={onSwitch}
         disabled={!isActive} 
-        className={`mt-4 px-4 py-2 text-lg rounded h-60 ${
-          isActive ? 'bg-red-500' : 'bg-blue-500 cursor-not-allowed'
+        className={`mt-16 px-4 py-2 text-[2rem] rounded h-[12rem] font-bold ${
+          isActive ? 'bg-red-500' : 'bg-gray-500 cursor-not-allowed'
         }`}
       >
         {isActive ? 'Stop' : 'Opponent Turn'}
